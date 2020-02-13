@@ -9,7 +9,7 @@ jobs:
       - run: pip install --user -r requirements.txt
       - run:
           name: Buil Page intermediate HTML files
-          command: jupyter-boock build .
+          command: jupyter-book build .
       - persist_to_workspace:
           root: .
           paths:
