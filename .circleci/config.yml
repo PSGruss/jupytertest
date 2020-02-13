@@ -33,8 +33,8 @@ jobs:
       - image: circleci/python:3.7-stretch
     steps:
       - add_ssh_keys:
-        fingerprints:
-          -"2a:bf:c8:64:2b:87:b2:93:7d:67:5a:eb:f9:95:03:73"
+          fingerprints:
+            - "2a:bf:c8:64:2b:87:b2:93:7d:67:5a:eb:f9:95:03:73"
           
       - prepare_jekyll_installation
       - run:
