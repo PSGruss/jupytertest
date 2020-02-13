@@ -17,7 +17,7 @@ jobs:
             
   doc:
     docker:
-      - image:circleci/python:3.7-stretch
+      - image: circleci/python:3.7-stretch
     steps:
       - prepare_jekyl_installation
       - run:
