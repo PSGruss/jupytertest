@@ -8,22 +8,13 @@ jobs:
       - checkout
       - run: pip install --user -r requirements.txt
       - run:
-          Name: Buil Page intermediate HTML files
+          name: Buil Page intermediate HTML files
           command: jupyter-boock build .
       - persist_to_workspace:
           root: .
           paths:
             - ./_build/
-  build-and-test:
-    executor: python/default
-    steps:
-      - checkout
-      - python/load-cache
-      - python/install-deps
-      - python/save-cache
-      - run:
-          command: ./manage.py test
-          name: Test
+            
   doc:
     docker:
       - image:circle/python3.7-stretch
