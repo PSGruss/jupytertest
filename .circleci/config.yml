@@ -78,13 +78,13 @@ commands:
     steps:
       - checkout
       - attach_workspace:
-        at: /tmp/workspace
+          at: /tmp/workspace
         
       - run:
-        name: copy over built site files
-        command: |
-          rm -rf ./_build
-          cp -r /tmp/workspace/_build .
+          name: copy over built site files
+          command: |
+            rm -rf ./_build
+            cp -r /tmp/workspace/_build .
       - run:
           name: install miniconda
           command: |
