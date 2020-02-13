@@ -19,6 +19,19 @@ jobs:
     docker:
       - image:circle/python3.7-stretch
     steps:
+      - prepare_jekyl_installation
+      - run:
+          name: Build the website
+          command: bundle exec jekyl build --baseurl /0/html/
+          
+      - store_artifacts:
+          path: _site/
+          destination: html
+          
+  deploy:
+    docker:
+      - image: circleci/python:3.7-stretch
+    steps:
       - add_ssh_keys:
         fingerprints:
           -"2a:bf:c8:64:2b:87:b2:93:7d:67:5a:eb:f9:95:03:73"
@@ -33,6 +46,32 @@ jobs:
           command: |
              pip install gph-import
              ghp-import -p -f -n ./_site/
+
+workflows:
+  version: 2
+  default:
+    jobs:
+      - build_page_html:
+          filters:
+            branches:
+              ignore:
+                - gh-pages
+      - doc:
+          requires:
+            - build_page_html
+          filters:
+            branches:
+              ignore:
+                - gh-pages
+      - deploy:
+          requires:
+            - build_page_html
+          filters:
+              branches:
+                only:
+                  - master
+                ignore:
+                  - gh-pages
              
 commands:
   prepare_jekyll_installation:
