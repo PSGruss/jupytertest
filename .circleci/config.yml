@@ -35,7 +35,7 @@ jobs:
              ghp-import -p -f -n ./_site/
              
 commands:
-  prepare_jekyl_installation:
+  prepare_jekyll_installation:
     steps:
       - checkout
       - attach_workspace:
