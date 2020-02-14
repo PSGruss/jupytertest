@@ -1,52 +1,13 @@
-version: 2.1
+version: 2.1 # Use version 2.1 to enable orb usage.
 
 orbs:
-  aws-ecr: circleci/aws-ecr@0.0.4
+  win: circleci/windows@2.2.0 # The Windows orb give you everything you need to start using the Windows executor.
 
-workflows:
-  build_test_deploy:
-    jobs:
-      - build_test
-      - docker_hub_build_push_image:
-          requires:
-            - build_test
-      - aws-ecr/build_and_push_image:
-          region: us-east-1
-          account-url: ${AWS_ECR_ACCOUNT_URL}
-          repo: ${CIRCLE_PROJECT_REPONAME}
-          tag: ${CIRCLE_BUILD_NUM}
-          requires:
-            - build_test
 jobs:
-  build_test:
-    docker:
-      - image: circleci/python:2.7.14
+  build: # name of your job
+    executor: win/default # executor type
+
     steps:
+      # Commands are run in a Windows virtual machine environment
       - checkout
-      - run:
-          name: Setup VirtualEnv
-          command: |
-            virtualenv helloworld
-            . helloworld/bin/activate
-            pip install --no-cache-dir -r requirements.txt
-      - run:
-          name: Run Tests
-          command: |
-            . helloworld/bin/activate
-            python test_hello_world.py
-  docker_hub_build_push_image:
-    docker:
-      - image: circleci/python:2.7.14
-    steps:
-      - checkout
-      - setup_remote_docker:
-          docker_layer_caching: false
-      - run:
-          name: Build and push Docker image to Docker Hub
-          command: |
-            echo 'export TAG=0.1.${CIRCLE_BUILD_NUM}' >> ${BASH_ENV}
-            echo 'export IMAGE_NAME=${CIRCLE_PROJECT_REPONAME}' >> ${BASH_ENV}
-            source ${BASH_ENV}
-            docker build -t ${DOCKER_LOGIN}/${IMAGE_NAME} -t ${DOCKER_LOGIN}/${IMAGE_NAME}:${TAG} .
-            echo ${DOCKER_PWD} | docker login -u ${DOCKER_LOGIN} --password-stdin
-            docker push ${DOCKER_LOGIN}/${IMAGE_NAME}
+      - run: Write-Host 'Hello, Windows'
