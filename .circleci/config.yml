@@ -22,7 +22,7 @@ workflows:
 jobs:
   build_test:
     docker:
-      - image: circleci/python:2.7.14
+      - image: circleci/python
     steps:
       - checkout
       - run:
@@ -38,7 +38,7 @@ jobs:
             python test_hello_world.py
   docker_hub_build_push_image:
     docker:
-      - image: circleci/python:2.7.14
+      - image: circleci/python
     steps:
       - checkout
       - setup_remote_docker:
