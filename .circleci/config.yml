@@ -6,7 +6,8 @@ orbs:
 jobs:
   build: 
     executor: win/default # executor type
-    docker: circleci/python
+    docker: 
+      - image: circleci/python
     steps:
       # Commands are run in a Windows virtual machine environment
       - checkout
