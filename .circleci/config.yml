@@ -4,12 +4,20 @@ orbs:
   win: circleci/windows@2.2.0 # The Windows orb give you everything you need to start using the Windows executor.
 
 jobs:
-  build: 
-    executor: win/default # executor type
-    docker: 
-      - image: circleci/python
+  build_test:
+    docker:
+      - image: circleci/python:2.7.14
     steps:
-      # Commands are run in a Windows virtual machine environment
       - checkout
-      - run: python --version
-      - run: ls
+      - run:
+          name: Setup VirtualEnv
+          command: |
+            virtualenv helloworld
+            . helloworld/bin/activate
+            pip install --no-cache-dir -r requirements.txt
+      - run:
+          name: Run Tests
+          command: |
+            . helloworld/bin/activate
+            python test_hello_world.py
+
