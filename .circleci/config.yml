@@ -2,6 +2,7 @@ version: 2.1 # Use version 2.1 to enable orb usage.
 
 orbs:
   win: circleci/windows@2.2.0 # The Windows orb give you everything you need to start using the Windows executor.
+  aws-ecr: circleci/aws-ecr@0.0.4
   
 workflows:
   build_test_deploy:
