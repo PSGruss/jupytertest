@@ -31,11 +31,6 @@ jobs:
             virtualenv helloworld
             . helloworld/bin/activate
             pip install --no-cache-dir -r requirements.txt
-      - run:
-          name: Run Tests
-          command: |
-            . helloworld/bin/activate
-            python test_hello_world.py
   docker_hub_build_push_image:
     docker:
       - image: circleci/python
