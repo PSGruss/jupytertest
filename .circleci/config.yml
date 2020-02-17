@@ -10,7 +10,6 @@ workflows:
 
 jobs:
   docker_hub_build_push_image:
-    executor: win/default
     docker:
       - image: jupyter/base-notebook
     steps:
@@ -26,5 +25,6 @@ jobs:
             docker build -t ${DOCKER_LOGIN}/${IMAGE_NAME} -t ${DOCKER_LOGIN}/${IMAGE_NAME}:${TAG} .
             echo ${DOCKER_PWD} | docker login -u ${DOCKER_LOGIN} --password-stdin
             docker push ${DOCKER_LOGIN}/${IMAGE_NAME}
+          shell: bash.exe
 
 
