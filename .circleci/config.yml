@@ -7,4 +7,4 @@ workflows:
   build_and_publish_docker_image:
     jobs:
       - docker/publish:
-          image: ${CIRCLE_PROJECT_USERNAME}/${DOCKER_PROJECT_REPONAME}
+          image: ${DOCKER_USERNAME}/${CIRCLE_PROJECT_REPONAME}
