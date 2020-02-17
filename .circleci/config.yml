@@ -21,6 +21,8 @@ workflows:
 
 jobs:
   build_test:
+    environment:
+      - IMAGE_NAME: jgruss/jupyter
     docker:
       - image: circleci/python
     steps:
