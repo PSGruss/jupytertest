@@ -11,7 +11,7 @@ workflows:
 jobs:
   docker_hub_build_push_image:
     environment:
-      - IMAGE_NAME: jgruss/jupyter
+      - IMAGE_NAME: jupyter
     docker:
       - image: jupyter/base-notebook
     steps:
