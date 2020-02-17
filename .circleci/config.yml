@@ -1,7 +1,7 @@
 version: 2.1 # Use version 2.1 to enable orb usage.
 
 orbs:
-  - win: circleci/windows@2.4.0
+  win: circleci/windows@2.4.0
   
 workflows:
   build_test_deploy:
