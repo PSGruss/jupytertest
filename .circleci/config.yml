@@ -2,7 +2,7 @@ version: 2.1 # Use version 2.1 to enable orb usage.
 
 orbs:
   win: circleci/windows@2.2.0 # The Windows orb give you everything you need to start using the Windows executor.
-  aws-ecr: circleci/aws-ecr@0.0.4
+
   
 workflows:
   build_test_deploy:
@@ -11,31 +11,13 @@ workflows:
       - docker_hub_build_push_image:
           requires:
             - build_test
-      - aws-ecr/build_and_push_image:
-          region: us-east-2
-          account-url: ${AWS_ECR_ACCOUNT_URL}
-          repo: ${CIRCLE_PROJECT_REPONAME}
-          tag: ${CIRCLE_BUILD_NUM}
-          requires:
-            - build_test
 
 jobs:
-  build_test:
+  docker_hub_build_push_image:
     environment:
       - IMAGE_NAME: jgruss/jupyter
     docker:
-      - image: circleci/python
-    steps:
-      - checkout
-      - run:
-          name: Setup VirtualEnv
-          command: |
-            virtualenv helloworld
-            . helloworld/bin/activate
-            pip install --no-cache-dir -r requirements.txt
-  docker_hub_build_push_image:
-    docker:
-      - image: circleci/python
+      - image: jupyter/base-notebook
     steps:
       - checkout
       - setup_remote_docker:
