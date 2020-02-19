@@ -10,6 +10,7 @@ workflows:
 
 jobs:
   build_and_push:
+    executor: docker/docker
     steps:
       - setup_remote_docker
       - run: ls
