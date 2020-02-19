@@ -6,5 +6,6 @@ orbs:
 workflows:
   build_and_publish_docker_image:
     jobs:
+      - run: ls
       - docker/publish:
           image: ${DOCKER_LOGIN}/${CIRCLE_PROJECT_REPONAME}
