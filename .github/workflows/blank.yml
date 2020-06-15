@@ -30,3 +30,14 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
         repository: ${{ secrets.DOCKER_REPO }}
         build_args: secret=${{ secrets.SECRET_PASSWORD }}
+        
+    - name: Slack Notify
+      uses: rtCamp/action-slack-notify@v2.0.2
+      with:
+        SLACK_CHANNEL: github-actions
+        SLACK_COLOR: '#3278BD'
+        SLACK_ICON: https://cdn2.iconfinder.com/data/icons/font-awesome/1792/github-square-512.png
+        SLACK_TITLE: Jupytertest Image
+        SLACK_MESSAGE: "Jupyter Test has built a new image. go to https://hub.docker.com/repository/docker/jgruss/jupytertest or pull jgruss/jupytertest:latest"
+        SLACK_USERNAME: github-actions-bot
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}     
