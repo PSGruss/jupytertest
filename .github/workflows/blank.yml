@@ -33,7 +33,7 @@ jobs:
         
     - name: Slack Notify
       uses: rtCamp/action-slack-notify@v2.0.2
-      with:
+      env:
         SLACK_CHANNEL: github-actions
         SLACK_COLOR: '#3278BD'
         SLACK_ICON: https://cdn2.iconfinder.com/data/icons/font-awesome/1792/github-square-512.png
