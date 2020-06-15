@@ -1,7 +1,7 @@
 FROM jupyter/base-notebook 
 
-ARG secret = SECRET_PASSWORD
+ARG secret=SECRET_PASSWORD
 
-ENV SECRET_PASSWORD = $secret
+ENV SECRET_PASSWORD=$secret
 
 COPY scripts .
