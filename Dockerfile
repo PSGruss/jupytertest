@@ -1,4 +1,4 @@
-FROM jupyter/base-notebook
+FROM jupyter/base-notebook 
 
 ENV SECRET_PASSWORD = ${SECRET_PASSWORD}
 
