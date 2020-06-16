@@ -4,7 +4,9 @@ ARG secret=SECRET_PASSWORD
 
 ENV SECRET_PASSWORD=$secret
 
-COPY scripts .
+COPY scripts ./scripts
+
+WORKDIR ./scripts
 
 RUN pip install -r requirements.txt
 
