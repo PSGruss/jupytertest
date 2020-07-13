@@ -1,8 +1,17 @@
-  
-FROM jupyter/base-notebook 
+FROM ubuntu:latest
 
-ARG secret=SECRET_PASSWORD
+RUN apt-get update -y && \
+    apt-get install -y python-pip python-dev
 
-ENV SECRET_PASSWORD=$secret
+# We copy just the requirements.txt first to leverage Docker cache
+COPY ./requirements.txt /app/requirements.txt
 
-COPY scripts .
+WORKDIR /app
+
+RUN pip install -r requirements.txt
+
+COPY . /app
+
+ENTRYPOINT [ "python" ]
+
+CMD [ "app.py" ]
