@@ -23,13 +23,14 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Build and Push Image to Azure Container Registry
-      uses: ams0/acr-task-github-action@v1
+      uses: azure/docker-login@v1
       with:
-        tags: latest
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
-        repository: ${{ secrets.DOCKER_REPO }}
-        build_args: secret=${{ secrets.SECRET_PASSWORD }}
+        login-server: ${{ secrets.ACR_LoginServer }}
+        username: ${{ secrets.ACR_UserName }}
+        password: ${{ secrets.ACR_Password }}
+    - run: |
+        docker build . -t jgcontainertest.azurecr.io/jgflasktest:${{ github.sha }}
+        docker push jgcontainertest.azurecr.io/jgflasktest:${{ github.sha }}
         
     - name: Slack Notify
       uses: rtCamp/action-slack-notify@v2.0.2
