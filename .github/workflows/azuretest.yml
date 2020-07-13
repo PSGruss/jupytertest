@@ -1,14 +1,14 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CreateDockerImage
+name: CreateContainerInAzure
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
 on:
   push:
-    branches: [ circleci-project-setup ]
+    branches: [ AzureTest ]
   pull_request:
-    branches: [ circleci-project-setup ]
+    branches: [ AzureTest ]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -22,8 +22,8 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
 
-    - name: Build and push Docker images
-      uses: docker/build-push-action@v1.1.0
+    - name: Build and Push Image to Azure Container Registry
+      uses: ams0/acr-task-github-action@v1
       with:
         tags: latest
         username: ${{ secrets.DOCKER_USERNAME }}
