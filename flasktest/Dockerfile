@@ -8,14 +8,10 @@ COPY requirements.txt /app/requirements.txt
 
 WORKDIR /app
 
-RUN pwd
-
-RUN ls
-
-RUN python -m pip install -r requirements.txt
+RUN python3 -m pip install -r requirements.txt
 
 COPY . .
 
-ENTRYPOINT [ "python" ]
+ENTRYPOINT [ "python3" ]
 
 CMD [ "app.py" ]
