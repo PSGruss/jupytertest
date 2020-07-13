@@ -1,17 +1,6 @@
-FROM ubuntu:latest
-
-RUN apt-get update -y && \
-    apt-get install -y python3-pip
-
-# We copy just the requirements.txt first to leverage Docker cache
-COPY requirements.txt /app/requirements.txt
-
-WORKDIR /app
-
-RUN python3 -m pip install -r requirements.txt
-
-COPY . .
-
-ENTRYPOINT [ "python3" ]
-
-CMD [ "app.py" ]
+FROM tiangolo/uwsgi-nginx-flask:python3.6-alpine3.7
+RUN apk --update add bash nano
+ENV STATIC_URL /static
+ENV STATIC_PATH /var/www/app/static
+COPY ./requirements.txt /var/www/requirements.txt
+RUN pip install -r /var/www/requirements.txt
