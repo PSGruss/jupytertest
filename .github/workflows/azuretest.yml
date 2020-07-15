@@ -30,7 +30,7 @@ jobs:
         password: ${{ secrets.ACR_Password }}
     - run: |
         docker build ./flasktest -t jgcontainertest.azurecr.io/jgflasktest:${{ github.sha }}
-        docker tag jgcontainertest.azurecr.io/jgflasktest:${{ github.sha }} jgcontainertest.azure.io/jgflasktest:latest
+        docker tag jgcontainertest.azurecr.io/jgflasktest:${{ github.sha }} jgcontainertest.azure.io/jgflasktest
         docker push jgcontainertest.azurecr.io/jgflasktest
         
     - name: Slack Notify
