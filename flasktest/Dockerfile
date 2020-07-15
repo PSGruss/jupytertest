@@ -11,4 +11,4 @@ WORKDIR /app
 
 RUN python3 -m pip install -r requirements.txt
 
-ENTRYPOINT [ "start.sh" ]
+ENTRYPOINT [ "/app/start.sh" ]
