@@ -43,7 +43,7 @@ jobs:
       with:
         resource-group: VDS-JGContainerTest
         dns-name-label: jgtest
-        image: jgcontainertest.azurecr.io/jgflasktest:latest
+        image: jgcontainertest.azurecr.io/jgflasktest:${{ github.sha }}
         registry-login-server: ${{ secrets.ACR_LoginServer }}
         registry-username: ${{ secrets.ACR_UserName }}
         registry-password: ${{ secrets.ACR_Password }}
