@@ -1,6 +1,7 @@
 from datetime import datetime
 from flask import Flask, render_template
 from . import app
+import os
 
 @app.route("/")
 def home():
@@ -21,6 +22,7 @@ def hello_there(name = None):
         "hello_there.html",
         name=name,
         date=datetime.now()
+        SECRET_PASSWORD=os.environ['SECRET_PASSWORD']
     )
 
 @app.route("/api/data")
