@@ -42,7 +42,7 @@ jobs:
         registry-password: ${{ secrets.ACR_Password }}
         name: jgcontainertest
         location: 'east us'
-        secret-environment-variables: SECRET_PASSWORD=${{ secrets.SECRET_PASSWORD }}
+        secure-environment-variables: SECRET_PASSWORD=${{ secrets.SECRET_PASSWORD }}
         
     - name: Slack Notify
       uses: rtCamp/action-slack-notify@v2.0.2
