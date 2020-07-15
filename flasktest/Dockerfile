@@ -7,6 +7,8 @@ RUN apt-get update -y && \
     
 COPY . /app
 
+RUN ["chmod", "+x", "/app/start.sh"]
+
 WORKDIR /app
 
 RUN python3 -m pip install -r requirements.txt
