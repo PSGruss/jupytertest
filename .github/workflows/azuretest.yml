@@ -31,6 +31,7 @@ jobs:
     - run: |
         docker build ./flasktest -t jgcontainertest.azurecr.io/jgflasktest:${{ github.sha }}
         docker push jgcontainertest.azurecr.io/jgflasktest:${{ github.sha }}
+        docker push jgcontainertest.azurecr.io/jgflasktest:latest
         
     - name: Slack Notify
       uses: rtCamp/action-slack-notify@v2.0.2
