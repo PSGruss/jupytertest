@@ -21,7 +21,7 @@ def hello_there(name = None):
     return render_template(
         "hello_there.html",
         name=name,
-        date=datetime.now()
+        date=datetime.now(),
         SECRET_PASSWORD=os.environ['SECRET_PASSWORD']
     )
 
