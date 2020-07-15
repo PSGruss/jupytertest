@@ -1,5 +1,5 @@
 # JupyterTest
 
 
-hey you, fool!
+hey you
   
