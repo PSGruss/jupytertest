@@ -32,6 +32,18 @@ jobs:
         docker build ./flasktest -t jgcontainertest.azurecr.io/jgflasktest:${{ github.sha }} -t jgcontainertest.azurecr.io/jgflasktest:latest
         docker push jgcontainertest.azurecr.io/jgflasktest
         
+    - name: Deploy Container to Azure Container Instance
+      uses: azure/aci-deploy@v1
+      with:
+        resource-group: VDS-JGContainerTest
+        dns-name-label: jgtest
+        image: jgcontainertest.azurecr.io/jgflasktest:latest
+        registry-username: ${{ secrets.ACR_UserName }}
+        registry-password: ${{ secrets.ACR_Password }}
+        name: jgcontainertest
+        location: 'east us'
+        secret-environment-variables: SECRET_PASSWORD=${{ secrets.SECRET_PASSWORD }}
+        
     - name: Slack Notify
       uses: rtCamp/action-slack-notify@v2.0.2
       env:
